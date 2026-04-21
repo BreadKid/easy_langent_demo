@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(conda activate *)",
+      "Bash(curl -X POST http://localhost:11434/api/generate -d '{\"model\": \"gemma4-e4b_local:v1\", \"prompt\": \"Hello\", \"stream\": false}' -H \"Content-Type: application/json\" -w \"\\\\nStatus: %{http_code}\\\\n\")"
+    ]
+  }
+}

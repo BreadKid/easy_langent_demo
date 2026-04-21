@@ -1,0 +1,10 @@
+langchain 
+langchain-openai 
+langchain_core
+langchain-community 
+langgraph 
+ipykernel
+langchain-huggingface
+transformers
+torch
+langchain_ollama
