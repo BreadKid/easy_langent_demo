@@ -40,7 +40,7 @@ MODELS_CONFIG = {
         provider="ollama",
         env_key_api="OLLAMA_API_KEY",
         env_key_base_url="OLLAMA_BASE_URL",
-        model_name="llama2",
+        model_name="gemma4-e4b_local:v1",
         temperature=0.5,
         max_tokens=500,
     ),
