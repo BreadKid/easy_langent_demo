@@ -20,34 +20,9 @@ class LLMFactory:
 
     def _get_default_model_from_env(self) -> str:
         """
-        手动解析 .env 文件以获取 DEFAULT_LLM=true 的模型名称。
+        从环境变量 GLOBAL_DEFAULT_MODEL 中获取默认模型名称。
         """
-        if not self.env_path.exists():
-            return "deepseek"
-
-        try:
-            content = self.env_path.read_text(encoding="utf-8")
-            lines = content.splitlines()
-            current_section = "deepseek"
-            
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-                if line.startswith("#"):
-                    comment = line.lstrip("#").strip().lower()
-                    for model_key in MODELS_CONFIG.keys():
-                        if model_key in comment:
-                            current_section = model_key
-                            break
-                    continue
-                clean_line = line.replace('"', '').replace("'", "").replace(" ", "")
-                if clean_line == "DEFAULT_LLM=true":
-                    return current_section
-        except Exception as e:
-            print(f"⚠️ 解析 .env 获取默认模型失败: {e}")
-            
-        return "deepseek"
+        return os.getenv("GLOBAL_DEFAULT_MODEL", "deepseek")
 
     def _load_and_validate(self):
         """验证所有配置的环境变量是否存在"""
