@@ -1,11 +1,12 @@
 # 导入Hugging Face的LLM接口
 from langchain_huggingface import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from torch import float16
 
 # 1. 加载Hugging Face的模型和tokenizer
-model_name = "moonshotai/Kimi-K2.6"  # 模型名 这是本地路径 这里替换成自己的路径！！
+model_name = "gpt2"  # 模型名 这是本地路径 这里替换成自己的路径！！
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=float16, device_map="auto")
 
 # 2. 构建pipeline
 pipe = pipeline(
